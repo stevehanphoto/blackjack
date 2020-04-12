@@ -1,0 +1,243 @@
+/*
+CNIT 133 Final Project
+Blackjack Game
+Steve Han
+
+History:
+4/25/19 Date started
+*/
+
+body {
+	background-color: white;
+	color: black;
+	font-size: 20px;
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+	width: 80%;
+	align-content: center;
+	margin: auto;
+/*	width: 1000px;
+	height: 700px;*/
+	position: relative;
+}
+
+#black-overlay {
+	visibility: hidden;
+	position: absolute;
+	z-index: 3;
+/*	height: 568px;
+	width: 880px;*/
+/*	left: calc(15.2vw);*/
+}
+
+#black-image {
+	position: absolute;
+	opacity: 0.7;
+	border-radius: 15%;
+	height: 568px;
+	width: 880px;
+	top: 278px;
+	z-index: 4;
+	left: calc(15.2vw);
+}
+
+#alert-message {
+	position: absolute;
+	font-size: 3em;
+	left: 400px;
+	top: 500px;
+	text-align: center;
+	z-index: 5;
+}
+
+#table {
+	background-image: url("images/card_game_table_texture.png");
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 250px 300px 300px 200px;
+	width: 1000px;
+/*	height: 1000px;*/
+/*	text-align: center;*/
+	background-repeat: repeat;
+	border-radius: 20%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+/*	opacity: 0.6;*/
+}
+
+#top-area {
+	grid-column: 1 / 2;
+	grid-row: 1 / 2;
+	text-align: center;
+	padding: 0;
+	letter-spacing: 0.6em;
+	line-height: 0.4em;
+	opacity: 0.5;
+/*	box-sizing: border-box;*/
+	border: 3px solid black;
+	border-radius: 40%;
+	margin-left: 9%;
+	margin-right: 9%;
+	margin-top: 3%;
+	margin-bottom: 2%;
+}
+
+#top-area img {
+	width: 280px;
+	height: 80px;
+	padding: 0;
+	margin: 0;
+	margin-top: 20px;
+}
+
+#dealer-area {
+	display: inline-block;
+	grid-column: 1 / 2;
+	grid-row: 2 / 3;
+	margin-left: 80px;
+	border: 2px solid black;
+	border-radius: 30% 30% 0 0;
+	margin-left: 6%;
+	margin-right: 6%;
+	margin-top: 2%;
+	margin-bottom: 0;
+}
+
+#player-area {
+	display: inline-block;
+	grid-column: 1 / 2;
+	grid-row: 3 / 4;
+	margin-left: 80px;
+	border: 2px solid #323335;
+	border-radius: 0 0 30% 30%;
+	margin-left: 6%;
+	margin-right: 6%;
+	margin-top: 0;
+	margin-bottom: 1%;
+}
+
+#button-area {
+	display: inline-block;
+	text-align: center;
+	grid-column: 1 / 2;
+	grid-row: 4 / 5;
+}
+
+#bottom-area {
+	grid-column: 1 / 2;
+	grid-row: 5 / 6;
+}
+
+.money .chips {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 500%;
+	color: white;
+}
+
+.chips:hover {
+	border: 1px solid white;
+}
+
+.card-container {
+	position: relative;
+	display: inline-block;
+/*	margin: 10px auto;*/
+/*	width: 450px;
+  height: 281px;*/
+/*  top: 200px;
+  left: 600px;*/
+	top: 50px;
+	z-index: 2;
+	perspective: 1000;
+	margin: 20px;
+}
+
+.cards {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transform-style: preserve-3d;
+	transition: all 0.4s linear;
+}
+
+.button {
+	position: relative;
+	display: inline-block;
+	color: #222;
+	font-weight: bolder;
+	background: radial-gradient(white, #333333);
+	font-size: 1em;
+	width: 100px;
+	height: 100px;
+	padding: 0px;
+	margin: 20px;
+	margin-top: 25px;
+	border: 2px solid #2222;
+	cursor: pointer;
+	border-radius: 50%;
+	text-align: center;
+	box-sizing: content-box;
+}
+
+.button:hover {
+/*	background: radial-gradient( black, whitesmoke);*/
+/*	background: radial-gradient(closest-side,black, #ebf8e1, orangered);*/
+	animation-name: button-color;
+    animation-duration: 500ms;
+	animation-fill-mode: forwards;
+/*	animation-timing-function: cubic-bezier(0.311, 0.441, 0.444, 1.6.49);*/
+	animation-timing-function: ease-in-out;   
+/*	transition: 0.1s;*/
+}
+
+@keyframes button-color {
+    100% {
+		background-image: radial-gradient(salmon 0%, transparent 20%, salmon 80%);	
+		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		font-weight: bolder;
+		color: whitesmoke;
+		background-color: black;
+		border: 4px solid orangered;
+    }
+  }
+
+#hit-button, #stand-button {
+	visibility: hidden;
+}
+
+#player-score-box, #dealer-score-box {
+	position: relative;
+	display: inline-block;
+	color: orangered;
+	left: 680px;
+	top: 20px;
+}
+
+#player-score, #dealer-score {
+	color: whitesmoke;
+	font-size: 1.4em;
+	padding: 0.5em;
+}
+
+@media screen and (max-width: 800px) {
+  .left, .main, .right, .column {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+
+.face {
+/*   position: absolute;*/
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+}
+.face.front  {
+	display: block;
+	transform: rotateY(180deg);
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	text-align: center;
+}
