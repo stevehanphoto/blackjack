@@ -1,6 +1,6 @@
-# Blackjack Project
+# Steve Han Photography - Blackjack Game Project
 
-This project was originally my final project of the CNIT 133: Introduction to Javascript class I took on the Spring of 2019 at CCSF.
+This game was my final project for the class, [CNIT 133: JavaScript, jQuery, AJAX](https://ccsf.edu/Schedule/CD/CNIT%20133.htm), I took at CCSF Spring of 2019.  The program was made using vanilla javascript, HTML, and CSS.
 
 ## Instructions to run:
 
@@ -8,6 +8,5 @@ This project was originally my final project of the CNIT 133: Introduction to Ja
 ## Project Folder Structure
 ```bash
     
-## Contributing
 
 
