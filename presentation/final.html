@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/white.css">
+		<link rel="stylesheet" href="css/final.css">
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/vs.css">
+		<script src="js/final.js"></script>
+
+		<style type="text/css" media="screen">
+			.section-has-dark-background .slides section.has-dark-background,
+			.slides section.has-dark-background h3 {
+				color: #fff;
+			}
+			.slides section.has-light-background,
+			.slides section.has-light-background h3 {
+				color: #222;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="images/cloudpacifica.jpg">
+					<p class="make-white">CNIT 133 Javascript Final Project</p>
+					<h2 class="make-white">Blackjack Game</h2>
+					<br>
+					<p class="make-white">Present by</p>
+					<h3 class="make-white">Steve Han</h3>
+				</section>
+				<section>
+					<h3>Presentation Outline</h3>
+					<ul>
+						<li>Introduction<span class="fragment fade-in"> - fashion photography</span></li>
+						<li>Game Demo</li>
+						<li>Chrome Developer Tools
+							<span class="fragment fade-in"><br>Debugger, Console<br>IDE built in to browser</span>
+						</li>
+						<li>Conclusion
+							<span class="fragment fade-in"><br>Presentation made on web technology - Reveal.js</span>
+						</li>
+					</ul>
+				</section>
+				<section data-transition="convex">
+					<img src="images/BenSammieKateKnuvelderKenChen.jpg">
+					<p>Models:<br>Ben<br>Sammie<br>Designers:<br>Kate Knuvelder<br>KenChen.jpg</p>
+				</section>
+				<section data-transition="convex">
+					<img src="images/ScarlettLashDarkBeautyLaceyBannister.jpg">
+				</section>
+				<section data-background-iframe="http://www.stevehanphotography.com/cnit133/final/blackjack.html" data-background-interactive>
+				</section>
+				<section>
+						<p><a href="http://www.stevehanphotography.com/cnit133/final/blackjack.html" target="_BLANK">Developer Tools Demo</a></p>				
+				</section>
+				<section>
+					<p>createCard function</p>
+					<pre><code class="hljs" data-trim>
+						function createCard(cardType)
+						{
+							var area = document.getElementById(cardType + "-area");
+							var containerElement = document.createElement("div");
+							var cardElement = document.createElement("div");
+							var cardBackFace = document.createElement("div");
+							var cardFrontFace = document.createElement("div");
+							var frontImage = document.createElement("img");
+							var backImage = document.createElement("img");
+							var newCard = getNewCard();
+							var re = /[CDSH]/;
+							var suite = newCard.match(re);
+							var numCards;
+						
+							numCards = getNumCards(cardType);
+							containerElement.className = "card-container";
+							containerElement.id = cardType + "card-container-" + numCards;
+							cardElement.id = cardType + "-card-" + numCards;
+							cardElement.className = "cards " + cardType + "-cards";
+						
+							cardBackFace.id = cardType + "-card-back-" + numCards;
+							cardBackFace.className = "back face center";
+							cardFrontFace.id = cardType + "-card-front-" + numCards;
+							cardFrontFace.className = "front face";
+						
+							frontImage.src = getCardFrontImage(newCard);
+							backImage.src = getCardBackImage(suite);
+						
+							containerElement.appendChild(cardElement);
+							cardElement.appendChild(cardBackFace);
+							cardElement.appendChild(cardFrontFace);
+							cardBackFace.appendChild(backImage);
+							cardFrontFace.appendChild(frontImage);
+							containerElement.style.left = ((numCards-1)*100).toString() + "px";
+							area.appendChild(containerElement);
+						}
+					</code></pre>
+				</section>
+				<section data-background-iframe="https://github.com/hakimel/reveal.js" data-background-interactive>
+					<h3>Conclusion</h3>
+					<ul>
+						<li class="fragment fade-in">Open source javascript framework Reveal.js</li>
+						<li class="fragment fade-in">Website: <a href="http://www.revealjs.com" target="_BLANK">www.revealjs.com</a></li>
+						<li class="fragment fade-in">Download: <a href="https://github.com/hakimel/reveal.js" target="_BLANK">https://github.com/hakimel/reveal.js</a></li>
+						<li class="fragment fade-in-then-semi-out">Paid subscription: <a href="http://www.slide.com" target="_BLANK">slides.com</a></li>
+					</ul>					
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
