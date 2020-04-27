@@ -4,9 +4,8 @@ This game was my final project for an introduction to javascript class, [CNIT 13
 
 There are four front card faces using images from my days as a fashion photographer to represent the four suits in a 52 deck card.
 
-At the end of the semester we gave presentation of our project.  [Click here](https://cocky-benz-f77e67.netlify.app/presentation/final.html) to view my presentation slides, made using [reveal.js](https://revealjs.com/).
+At the end of the semester we gave presentation of our project.  [View my presentation slides](https://cocky-benz-f77e67.netlify.app/presentation/final.html), made using [reveal.js](https://revealjs.com/).
 
-[Click here](https://cocky-benz-f77e67.netlify.app/) to play the game.
-    
+[Play the game](https://cocky-benz-f77e67.netlify.app/). 
 
 
