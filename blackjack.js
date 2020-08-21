@@ -12,6 +12,7 @@ NOTES:
 HISTORY:
 4/25/19 Started coding
 5/10/19 Updated documentation (comments)
+8/20/20 Replaced alert box with custom modal
 
 KNOWN ISSUE:
 The card flipping is tested on Chrome and Microsoft Edge, but doesn't work on 
@@ -38,6 +39,10 @@ hands are dealt.
 "use strict"
 
 /********************************************************************************/
+
+/* IMPORTING MODULES */
+//import Modal from './Modal'
+
 /* GLOBAL VARIABLES */
 
 /* An array of the 52 cards in the deck with 1 to 2 characters (2 for an it's 10) 
@@ -85,10 +90,61 @@ var standButton;
 
 /********************************************************************************/
 
+class Modal {
+    constructor() {
+        this.injectHTML()
+        this.closeButton = document.querySelector(".modal__button")
+        document.querySelector(".modal__message").textContent = this.message
+        console.log(document.querySelector(".modal__message"))
+        this.modal = document.querySelector(".modal")
+        this.closeIcon = document.querySelector(".modal__close")
+        this.events()
+    }
+
+    events() {
+        this.closeButton.addEventListener("click", () => this.close())
+
+        // pushes any key
+        document.addEventListener("keyup", e => this.keyPressHandler(e))
+    }
+
+    keyPressHandler(e) {
+        if (e.keyCode == 27) {
+            this.close()
+        }
+    }
+
+    open(message) {
+        document.querySelector(".modal__message").textContent = message
+        this.modal.classList.add("modal--is-visible")
+    }
+
+    close() {
+        this.modal.classList.remove("modal--is-visible")
+    }
+
+    injectHTML() {
+        document.body.insertAdjacentHTML('beforeend', `
+         <div class="modal">
+            <div class="modal__inner">
+                <div class="modal__message"></div>
+                <div class="modal__button-container">
+                    <button class="modal__button">Continue playing</button>
+                </div>
+                <div class="modal__close">X</div>
+            </div>
+        </div>
+      `)
+    }
+}
+
 window.addEventListener("load", initAll, false);
+
+let modal;
 
 function initAll() {
     initButtons();
+    modal = new Modal();
 }
 
 /* This function prepares the table to deal a new hand. */
@@ -212,21 +268,24 @@ function checkWin(){
       true is returned. */ 
     if (playerScore > 21) 
     {
-        alert("Bust!  Dealer wins!");
+        modal.open("Bust!  Dealer wins!")
+        // alert("Bust!  Dealer wins!");
         return true;
     }
     /* Next it checks if the dealer score is over  21.  If so, the player has won 
        and a true is returned. */  
     else if (dealerScore > 21) 
     {
-        alert("Bust!  You win!");
+        modal.open("Bust!  You win!")
+//        alert("Bust!  You win!");
         return true;
     }
     /* Next it checks if the dealer's score is greater than the player's.  If so the 
        dealer has won and a true is returned. */
     else if (dealerScore > playerScore)
     {
-        alert("Dealer wins!");
+        modal.open("Dealer wins!")
+        //        alert("Dealer wins!");
         return true;
     }
     /* Next check if the scores are equal and it's equal or greater than 18, a true is
@@ -234,7 +293,8 @@ function checkWin(){
        this can be changed. */
     else if ((dealerScore == playerScore) && dealerScore >= 18)
     {
-        alert("It's a push!");
+        modal.open("It's a push!")
+        //alert("It's a push!");
         return true;
     }
     /* Lastly return a false if we must continue.
@@ -523,3 +583,4 @@ function getNewCard()
     usedCards[randomNum] = true;
     return cards[randomNum];
 }
+
